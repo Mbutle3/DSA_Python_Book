@@ -65,8 +65,34 @@ def reverse_file(filename):
     output.close()
 
 
-reverse_file("reverse_text.txt")
+print("Reversing 'reverse_text.txt' file")
+# reverse_file("reverse_text.txt")
+print()
 
-"""Reverse this string
-and let's see
-what happens :-)"""
+print("Matching Parenthesis")
+
+
+def is_Matching(expression):
+    """Returns True if all delimiters are properly matched
+               False otherwise"""
+    left = '{[('  # opening delimiters
+    right = '}])'  # closing delimiters
+    s3 = ArrayStack()
+
+    for c in expression:
+        if c in left:
+            s3.push(c)  # push left delimiter on stack
+        elif c in right:
+            if s3.is_empty():
+                return False  # noting to match with
+            if right.index(c) != left.index(s3.pop()):
+                return False  # mismatched
+    return s3.is_empty()  # Were all symbols matched if so returns True otherwise returns False
+
+
+print(is_Matching("( )(( )){([( )])}"))
+print(is_Matching("( )"))
+print(is_Matching("((()(()){([()])}))"))
+print(is_Matching("({[])}"))
+print(is_Matching('{'))
+print()
